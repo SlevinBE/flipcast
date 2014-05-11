@@ -39,7 +39,10 @@ object ConnectionHelper {
         socketTimeout = config.socketTimeout,
         writeConcern = WriteConcern.Safe,
         readPreference = ReadPreference.SecondaryPreferred,
-        threadsAllowedToBlockForConnectionMultiplier = Runtime.getRuntime.availableProcessors() / 2
+        threadsAllowedToBlockForConnectionMultiplier = {
+          val nrOfThreads = Runtime.getRuntime.availableProcessors() / 2
+          if(nrOfThreads >= 1) nrOfThreads else 1
+        }
       )
       val servers = config.hosts.map( h => {
         val tokens = h.split(":")
