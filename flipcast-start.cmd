@@ -30,7 +30,7 @@ REM Program Name
 set JAVA_OPTS="%JAVA_OPTS% -D${PACKAGE}"
 
 REM Reduce the per-thread stack size
-set JAVA_OPTS="%JAVA_OPTS% -Xss180k"
+set JAVA_OPTS="%JAVA_OPTS% -Xss256k"
 
 REM Force the JVM to use IPv4 stack
 set JAVA_OPTS="%JAVA_OPTS% -Djava.net.preferIPv4Stack=true"
