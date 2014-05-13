@@ -11,11 +11,11 @@ APP_JAR="flipcast-service.jar"
 export OOM_RESTART_CMD="\"/etc/init.d/${PACKAGE} force-restart\""
 
 #Memory settings
-JAVA_OPTS="${JAVA_OPTS} -Xms1024m"
-JAVA_OPTS="${JAVA_OPTS} -Xmx1024m"
-JAVA_OPTS="${JAVA_OPTS} -Xmn512m"
-JAVA_OPTS="${JAVA_OPTS} -XX:NewSize=512m"
-JAVA_OPTS="${JAVA_OPTS} -XX:MaxNewSize=512m"
+JAVA_OPTS="${JAVA_OPTS} -Xms128m"
+JAVA_OPTS="${JAVA_OPTS} -Xmx256m"
+JAVA_OPTS="${JAVA_OPTS} -Xmn80m"
+JAVA_OPTS="${JAVA_OPTS} -XX:NewSize=80m"
+JAVA_OPTS="${JAVA_OPTS} -XX:MaxNewSize=128m"
 
 
 # Set Server JVM
