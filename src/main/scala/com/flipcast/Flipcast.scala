@@ -47,13 +47,7 @@ object Flipcast extends App {
   /**
    * Host name that will be used to bind the server
    */
-  lazy val hostname = try {
-      InetAddress.getLocalHost.getHostName
-    } catch {
-    case ex: Exception =>
-      log.warn("Unable to resolve hostname! Returning loopback address. The server will not be reachable from external hosts")
-      "127.0.0.1"
-    }
+  lazy val hostname = serverConfig.hostname
 
   /**
    * Load application configuration
