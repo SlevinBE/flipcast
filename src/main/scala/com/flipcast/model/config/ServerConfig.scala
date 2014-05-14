@@ -10,6 +10,14 @@ import com.typesafe.config.Config
  */
 case class ServerConfig (config: Config) {
 
+  def hostname = {
+    try {
+      config.getString("host")
+    } catch {
+      case ex: Exception => "127.0.0.1"
+    }
+  }
+
   def port = {
     try {
       config.getInt("port")
