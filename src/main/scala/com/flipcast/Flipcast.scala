@@ -16,7 +16,7 @@ import com.flipcast.model.config.ServerConfig
 import com.flipcast.model.config.MongoConfig
 import com.flipcast.model.config.HazelcastConfig
 import com.flipcast.model.config.RmqConfig
-import com.flipcast.push.common.DeviceDataSourceManager
+import com.flipcast.push.common.{PushMessageTransformerRegistry, DeviceDataSourceManager}
 import com.flipcast.push.mongo.MongoDeviceDataSource
 import com.flipcast.push.apns.service.FlipcastApnsRequestConsumer
 import scala.concurrent.duration._
@@ -29,6 +29,7 @@ import scala.concurrent.duration.TimeUnit
 import com.codahale.metrics.{Slf4jReporter, MetricFilter}
 import org.slf4j.LoggerFactory
 import com.flipcast.common.FlipCastMetricsRegistry
+import com.flipcast.push.example.RawPushMessageTransformer
 
 
 /**
@@ -161,7 +162,14 @@ object Flipcast extends App {
   }
 
 
+  def registerTransformers() {
+    PushMessageTransformerRegistry.register("default", RawPushMessageTransformer)
+  }
+
   def boot() {
+    //register message transformers
+    registerTransformers()
+
     //Register all the services
     registerServices()
 
